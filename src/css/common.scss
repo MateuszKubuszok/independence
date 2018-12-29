@@ -1,0 +1,300 @@
+---
+---
+
+$background: #ddd;
+
+$normal-header: #eee;
+$normal-main: #111;
+
+$emphase-header: #e25440;
+
+$standard-font: Raleway, sans-serif;
+$special-font: 'Roboto Slab', sans-serif;
+
+$standard-margin: 2.5em;
+$content-margin: 30pt;
+
+@import "reset";
+
+/* Google fonts
+   https://google-webfonts-helper.herokuapp.com/fonts */
+@import "fonts";
+
+@import "fira-code";
+
+/* KaTeX 10.0
+   changed fonts/ to ../fonts/ */
+@import "katex";
+
+/* FontAwesome
+   https://fontawesome.com/how-to-use/on-the-web/setup/hosting-font-awesome-yourself */
+@import "fontawesome";
+@import "brands";
+@import "regular";
+@import "solid";
+
+// fonts and colors
+
+body {
+  color: $normal-main;
+  font-family: $standard-font;
+}
+
+header {
+  color: $normal-header;
+  font-size: 14pt;
+  font-family: $special-font;
+  nav { font-size: 12pt; }
+  a {
+    color: $normal-header;
+    text-decoration: none;
+    transition: 0.3s;
+    em { font-weight: bold; }
+  }
+  a:hover, a:focus { color: $emphase-header; }
+  h1 { text-align: center; }
+  hr { background-color: rgba($normal-header, 0.25); }
+  p { font-style: italic; margin: 1em; text-align: center; }
+  ul.button-bar li {
+    font-size: 120%;
+    font-weight: 500;
+  }
+  ul.section-nav li {
+    font-size: 1.0em;
+    font-weight: 500;
+    li {
+      font-weight: 300;
+      li {
+        font-size: 0.8em;
+      }
+    }
+  }
+}
+
+main {
+  font-size: 14pt;
+
+  a {
+    color: $normal-main;
+    text-decoration: none;
+    transition: 0.3s;
+    em { font-weight: bold; }
+  }
+  a:hover, a:focus { color: $emphase-header; }
+
+  blockquote, p, table, ul {
+    line-height: 1.5em;
+    a { text-decoration: underline; }
+    code {
+      background: #181818;
+      border-radius: 3px;
+      color: #F8F8F8;
+      font-family: 'Fira Code', Consolas, Monaco, 'Lucida Console';
+      padding: 1px 4px;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+  }
+
+  blockquote {
+    border: 1px $background solid;
+    border-width: 1px 0;
+    font-style: italic;
+    margin: 0;
+    text-align: center;
+    pre > code { text-align: left; }
+  }
+
+  pre > code {
+    display: block;
+    font-family: 'Fira Code', Consolas, Monaco, 'Lucida Console';
+    overflow: auto;
+    span {
+      font-family: 'Fira Code', Consolas, Monaco, 'Lucida Console';
+    }
+  }
+
+  .table-wrapper {
+    margin: 0;
+    overflow-x: auto;
+  }
+  table {
+    font-size: 12pt;
+    margin: 0;
+    width: 100%;
+
+    thead {
+      font-weight: bold;
+
+      th {
+        text-align: left;
+        border-bottom: 4px solid $background;
+        font-weight: bold;
+        vertical-align: middle;
+      }
+    }
+
+    tr {
+      &:nth-child(even) td {
+        background: $background;
+      }
+    }
+  }
+
+  #disqus_thread {
+     -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+             box-sizing: border-box;
+  }
+}
+
+main.index .center-content, #recommended {
+  article > p { font-size: 12pt;}
+}
+
+article {
+  > h1:focus, > h1:hover { a { color: $emphase-header; } }
+
+  > .post-meta {
+    border-bottom: 1px solid $background;
+    color: #555;
+    font-size: 0.75em;
+  }
+  .series, .tags { a { margin: 0 0.25em; } }
+  h1, h2, h3, h4, h5, h6 {
+    .fa, .fab, .fal, .far, .fas {
+      display: inline-block;
+      width: (14pt * 2.5);
+    }
+  }
+}
+
+footer {
+  color: #555;
+  font-family: $special-font;
+  font-size: 60%;
+  text-align: center;
+}
+
+body {
+  h1, h2, h3, h4, h5, h6 { font-family: $special-font; }
+  h1 { font-size: 220% !important; }
+  h2 { font-size: 190%; }
+  h3 { font-size: 150%; font-style: italic; }
+  h4 { font-size: 130%; }
+  h5 { font-size: 120%; }
+  h6 { font-size: 110%; }
+
+  hr {
+    border: 0;
+    height: 1px;
+    width: 80%;
+    margin-bottom: 0.75em;
+    margin-top: 0.75em;
+  }
+
+  a { font-size: inherit; }
+  b, strong { font-weight: bold; }
+  em, i { text-decoration: italic; }
+  small { font-size: 80%; }
+  sub { font-size: small; vertical-align: sub; }
+  sup { font-size: small; vertical-align: super; }
+
+  img { max-width: 100%; }
+}
+
+// media queries
+
+@mixin setup-margins($outer-margin, $inner-margin) {
+
+  header {
+    ul.section-nav li {
+      margin-left: $outer-margin;
+    }
+  }
+
+  main {
+    li { margin-left: $outer-margin; }
+
+    blockquote {
+      padding: $inner-margin;
+    }
+
+    table {
+      thead {
+        th {
+          padding: ($inner-margin / 4);
+        }
+        th:first-child { padding-left: $inner-margin; }
+        th:last-child { padding-right: $inner-margin; }
+      }
+
+      tr {
+        td {
+          padding: ($inner-margin / 4);
+        }
+        td:first-child { padding-left: $inner-margin; }
+        td:last-child { padding-right: $inner-margin; }
+      }
+    }
+
+    #disqus_thread {
+      padding: $inner-margin;
+    }
+
+    .fa, .fab, .fal, .far, .fas { display: inline; }
+  }
+
+  article {
+    > * { margin: ($inner-margin / 2) $inner-margin; }
+    > *:first-child { margin: 0; padding: ($inner-margin / 2) $inner-margin; }
+    > *:last-child { margin-bottom: 0; padding-bottom: $inner-margin; }
+    > .highlighter-rouge {
+      margin: 0;
+      pre > code { padding: $inner-margin; }
+    }
+
+    > h2 { margin-top: ($inner-margin * 1.25); }
+    > h3 { margin-top: ($inner-margin * 1.00); }
+    > h4 { margin-top: ($inner-margin * 0.75); }
+
+    > .post-meta {
+      margin: 0;
+      padding: ($inner-margin * 0.75) $inner-margin;
+    }
+    > .post-meta + * { margin-top: $inner-margin; }
+  }
+} // @mixin header-on-top()
+
+@media (min-width: 1070px) {
+  // header on left
+  @include setup-margins($standard-margin, $content-margin);
+  blockquote, p, table, ul {
+    code {
+      font-size: 12pt;
+    }
+  }
+  pre > code {
+    font-size: 12pt;
+    span {
+      font-size: 12pt;
+    }
+  }
+}
+@media (max-width: 1069px) {
+  // header above - page-wide everything
+  @include setup-margins(($standard-margin / 2), ($content-margin / 2));
+  blockquote, p, table, ul {
+    code {
+      font-size: 10pt;
+    }
+  }
+  pre > code {
+    font-size: 10pt;
+    span {
+      font-size: 10pt;
+    }
+  }
+  table { font-size: 0.8em; }
+  .katex { font-size: 0.8em !important; }
+}

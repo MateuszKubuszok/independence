@@ -1,0 +1,48 @@
+language: python
+
+branches:
+  only:
+    - master
+
+services:
+  - docker
+
+build:
+  pre_ci:
+    - (groupadd jekyll --gid 1000 || true)
+    - (useradd  jekyll --gid 1000 --uid 1000 || true)
+    - rm -rf /tmp/$S3_BUCKET.com/
+    - mkdir -p /tmp/$S3_BUCKET/{src,bundle}
+    - make pull_docker
+  pre_ci_boot:
+    options: "-v /tmp/$S3_BUCKET/src:/tmp/$S3_BUCKET/src:Z -v /tmp/$S3_BUCKET/bundle:/tmp/$S3_BUCKET/bundle:Z"
+  ci:
+    - (userdel mysql || true)
+    - (groupdel mysql || true)
+    - (groupadd jekyll --gid 1000 || true)
+    - (useradd  jekyll --gid 1000 --uid 1000 || true)
+    - cp -Rf Makefile src /tmp/$S3_BUCKET
+    - chown -R jekyll /tmp/$S3_BUCKET
+    - cd /tmp/$S3_BUCKET
+    - ls -la /tmp/$S3_BUCKET/src/_posts
+    - make build
+  cache: true
+  cache_dir_list:
+    - /tmp/$S3_BUCKET/bundle/
+    - /tmp/$S3_BUCKET/src/_site/
+  on_success:
+    - make publish
+  always:
+    - rm -rf /tmp/$S3_BUCKET/src/*
+
+env:
+  global:
+    # AWS_ACCESS_KEY_ID
+    - secure: "[put secure AWS_ACCESS_KEY_ID here]"
+    # AWS_SECRET_ACCESS_KEY
+    - secure: "[put secure AWS_SECRET_ACCESS_KEY here]"
+    - AWS_DEFAULT_REGION=eu-central-1
+    - S3_BUCKET=[bucket name]
+    - CF_DISTRIBUTION_ID=[CF name]
+    # avoids using -it --privileged --userns=host with CI's Docker
+    - EXTRA_ARGS=' '

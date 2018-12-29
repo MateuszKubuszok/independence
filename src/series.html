@@ -1,0 +1,34 @@
+---
+title: Series
+permalink: /series/
+---
+<article>
+  <h2>{{ site.data.locales[page.lang].series | capitalize }}:</h2>
+  <div class="series">
+  {% for catitem in site.categories %}
+    <a href="#{{ catitem[0] }}"><i class="fas fa-signature"></i>&nbsp;{{ catitem[0] }}</a>
+  {% endfor %}
+  </div>
+
+  <!-- iterate through all series on the site -->
+  {% for catitem in site.categories %}
+    <!-- for each tag, create an anchor by using the tag name as an id -->
+    <div id="{{ catitem[0] }}">
+      <h3><i class="fas fa-signature"></i>{{ catitem[0] }}</h3>  <!-- for create a heading -->
+
+      <ul> <!-- create the list of posts -->
+        <!-- iterate through all the posts on the site -->
+        {% for post in site.posts reversed %}
+          <!-- list only those which contain the current tag -->
+          {% if post.categories contains catitem[0] %}
+          {% unless post.hidden %}
+              <li>
+                <a href="{{ post.url }}">{{ post.title }}</a>
+              </li>
+          {% endunless %}
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  {% endfor %}
+<article>

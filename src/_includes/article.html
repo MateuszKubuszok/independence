@@ -1,0 +1,13 @@
+<article>
+  <h1><a href="{{ site.baseurl }}{{ include.post_url | remove_first: '/' }}" title="{{ include.post_title }}">{{ include.post_title }}</a></h1>
+  <div class="post-meta">
+    <time datetime="{{ include.post_date | date: "%-d %b %Y" }}" class="date"><i class="far fa-calendar-alt"></i>&nbsp;{% include_cached translated_date.html date=include.post_date format="%-d %b %Y" lang=include.page_lang %}</time>
+    {%- if include.post_categories.size > 0 -%}
+    &#8226; <span class="series">{{ site.data.locales[include.page_lang].series }}: {% for category in include.post_categories %}<a href="{{ site.baseurl }}series/#{{ category }}"><i class="fas fa-signature"></i>&nbsp;{{ category }}</a> {%- endfor -%}</span>
+    {% endif %}
+    {%- if include.post_tags.size > 0 -%}
+    &#8226; <span class="tags">{{ site.data.locales[include.page_lang].tags }}: {% for tag in include.post_tags %}<a href="{{ site.baseurl }}tags/#{{ tag }}"><i class="fas fa-tag"></i>&nbsp;{{ tag }}</a> {% endfor %}</span>
+    {%- endif -%}
+  </div>
+  {{ include.post_content }}
+</article>

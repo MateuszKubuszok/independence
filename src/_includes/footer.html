@@ -1,0 +1,14 @@
+<footer>
+<div class="center-content">
+  <div id="copyright">&copy; {{ site.time | date: '%Y' }} {{ site.author.name }}. All rights reserved.</div>
+</div>
+</footer>
+
+{%- if site.google_analytics and jekyll.environment != "development" -%}
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', '{{ site.google_analytics }}', 'auto');
+  ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+{%- endif -%}

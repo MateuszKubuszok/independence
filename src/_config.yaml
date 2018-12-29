@@ -1,0 +1,65 @@
+# Site settings
+title: 'mysite.com'
+url: 'https://mysite.com'
+baseurl: '/'
+description: '<p>Consentire odit a "excindere" ultimum A id animi mi ti, stupebant urgeant sint Risus.</p><p>A mazim tetnpore mus tractu, architecto quod inceptos nisi bcatissimae ex antichristus.</p><p>Si sem diam ut nunc netus non omnis tyriis ab ad <a href="https://titulum.rem/ConvincUnturque">Capitis</a> eu <a href="https://accessus.eos/amet.hic">NAM</a> modi!</p>'
+# url under home page link
+subtitle:
+suburl:
+# external services - skip to not use on prod
+google_analytics: '[fill or remove]'
+disqus_shortname: '[fill or remove]'
+
+author:
+  # displayed in footer
+  name: '[fill or remove]'
+  # displayed in navigation - leave empty to skip
+  email: '[fill or remove]'
+  twitter_username: '[fill or remove]'
+  facebook_username: '[fill or remove]'
+  github_username:  '[fill or remove]'
+  stackoverflow_username: '[fill or remove]'
+  linkedin_username: '[fill or remove]'
+  cv_url: '[fill or remove]'
+
+defaults:
+  - scope:
+      path: ''
+      type: 'pages'
+    values:
+      layout: 'standalone'
+      lang: en
+      toc: true
+  - scope:
+      path: ''
+      type: 'posts'
+    values:
+      layout: 'post'
+      lang: en
+      toc: true
+
+# Build settings
+destination: _site
+permalink: /:year/:title/
+markdown: kramdown
+highlighter: rouge
+timezone: Europe/Warsaw
+
+sass:
+  style: compressed # we override it in _config.dev.yml to nested
+
+kramdown:
+  # use Github Flavored Markdown
+  input: GFM
+  # do not replace newlines by <br>s
+  hard_wrap: false
+  math_engine: katex
+  math_engine_opts: {}
+
+jekyll-minifier:
+  exclude: 'robots.txt'
+
+# If you add plugins make sure you check that section _config.dev.yml as well.
+# We use _config.dev.yml to remove jekyll-minifier from dev flow.
+plugins: ['jekyll-include-cache', 'jekyll-minifier', 'jekyll-sitemap', 'jekyll-toc']
+exclude: ['_config.dev.yaml', '_data', 'Gemfile', 'Gemfile.lock']

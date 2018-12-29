@@ -1,0 +1,8 @@
+source 'https://rubygems.org'
+gem 'jekyll'
+gem 'jekyll-include-cache', group: :jekyll_plugins
+gem 'jekyll-minifier', group: :jekyll_plugins
+gem 'jekyll-sitemap', group: :jekyll_plugins
+gem 'jekyll-toc', group: :jekyll_plugins
+gem 'execjs', group: :jekyll_plugins
+gem 'katex', group: :jekyll_plugins

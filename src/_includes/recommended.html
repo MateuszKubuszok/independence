@@ -1,0 +1,11 @@
+{%- if include.recommended -%}
+<div id="recommended">
+{%- for url in include.recommended -%}
+{%- for post in site.posts -%}
+{%- if url == post.url -%}
+  {%- include_cached article.html page_lang=include.page_lang post_url=post.url post_title=post.title post_date=post.date post_categories=post.categories post_tags=post.tags post_content='' -%}
+{%- endif -%}
+{%- endfor -%}
+{%- endfor -%}
+</div>
+{%- endif -%}

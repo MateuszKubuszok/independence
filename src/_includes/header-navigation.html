@@ -1,0 +1,106 @@
+<header>
+<div class="panel-overlay">
+<div class="center-content">
+  <p><a href="{{ site.baseurl }}" title="{{ site.title }}"><h1>{{ site.title }}</h1></a></p>
+  {%- if site.suburl and site.subtitle -%}
+  <p><a href="{{ site.suburl }}" title="{{ site.subtitle }}"><small>{{ site.subtitle }}</small></a></p>
+  {%- endif -%}
+  <nav>
+    <hr />
+    <ul class="button-bar">
+      {%- if site.author.twitter_username -%}
+      <!-- Twitter -->
+      <li>
+        <a href="https://twitter.com/{{ site.author.twitter_username }}" title="@{{ site.author.twitter_username }} on Twitter">
+          <i class="fab fa-twitter-square"></i>
+          <span class="label">Twitter</span>
+        </a>
+      </li>
+      {%- endif -%}
+
+      {%- if site.author.facebook_username -%}
+      <!-- Facebook -->
+      <li>
+        <a href="https://fb.me/{{ site.author.facebook_username }}" title="{{ site.author.facebook_username }} on Facebook">
+          <i class="fab fa-facebook-square"></i>
+          <span class="label">Facebook</span>
+        </a>
+      </li>
+      {%- endif -%}
+
+      {%- if site.author.linkedin_username -%}
+      <!-- LinkedIn -->
+      <li>
+        <a href="https://www.linkedin.com/in/{{ site.author.linkedin_username }}" title="{{ site.author.linkedin_username }} on LinkedIn">
+          <i class="fab fa-linkedin"></i>
+          <span class="label">LinkedIn</span>
+        </a>
+      </li>
+      {%- endif -%}
+
+      {%- if site.author.stackoverflow_username -%}
+      <!-- Stack Overflow -->
+      <li>
+        <a href="https://stackoverflow.com/story/{{ site.author.linkedin_username }}" title="{{ site.author.stackoverflow_username }} on Stack Overflow">
+          <i class="fab fa-stack-overflow"></i>
+          <span class="label">Stack Overflow</span>
+        </a>
+      </li>
+      {%- endif -%}
+
+      {%- if site.author.github_username -%}
+      <!-- GitHub -->
+      <li>
+        <a href="https://www.github.com/{{ site.author.github_username }}" title="{{ site.author.github_username }} on GitHub">
+          <i class="fab fa-github"></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+      {%- endif -%}
+
+      {%- if site.author.email -%}
+      <!-- Email -->
+      <li>
+        <a href="mailto:{{ site.author.email }}" title="Email {{ site.author.email }}">
+          <i class="fas fa-envelope"></i>
+          <span class="label">Email</span>
+        </a>
+      </li>
+      {%- endif -%}
+
+      <!-- RSS -->
+      <li>
+        <a href="{{ "feed.xml" | prepend: site.baseurl }}" title="Subscribe">
+          <i class="fas fa-rss-square"></i>
+          <span class="label">RSS</span>
+        </a>
+      </li>
+
+      <!-- CV -->
+      {%- if site.author.cv_url -%}
+      <li>
+        <a href="{{ site.author.cv_url }}" title="Download CV">
+          <i class="fas fa-file-pdf"></i>
+          <span class="label">CV</span>
+        </a>
+      </li>
+      {%- endif -%}
+    </ul>
+    {%- if include.page.next.url -%}
+    {%- unless include.page.next.hidden -%}
+    <hr />
+    <p><a href="{{ site.baseurl }}{{ include.page.next.url | remove_first: '/' }}" title="{{ include.page.next.title }}"><i class="fas fa-forward"></i> <em>{{ include.page.next.title }}</em></a></p>
+    {%- endunless -%}
+    {%- endif -%}
+    {%- if page.previous.url -%}
+    {%- unless page.previous.hidden -%}
+    <hr />
+    <p><a href="{{ site.baseurl }}{{ include.page.previous.url | remove_first: '/' }}" title="{{ include.page.previous.title }}"><i class="fas fa-backward"></i> <em>{{ include.page.previous.title }}</em></a><p>
+    {%- endunless -%}
+    {%- endif -%}
+    <hr />
+    {%- include_cached toc.html page_content=include.page_content -%}
+  </nav>
+</div>
+</div>
+</header>

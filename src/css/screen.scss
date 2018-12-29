@@ -1,0 +1,223 @@
+---
+---
+
+$normal-header: #eee;
+
+$standard-margin: 2.5em;
+
+$background-image: '/images/cover.jpg';
+
+html, body {
+  background-color: #ddd;
+  height: 100%;
+  width: 100%;
+}
+
+header {
+  background: url($background-image) top center no-repeat #666;
+  > .panel-overlay > .center-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    .user-image {
+      text-align: center;
+      img {
+        border: 3px solid rgba(255, 255, 255, 0.25);
+        border-radius: 100%;
+      }
+    }
+
+    ul.button-bar {
+      list-style: none;
+      text-align: center;
+      li {
+        background: rgba(255, 255, 255, 0.25);
+        display: inline-block;
+        padding: 4pt;
+        margin-right: 4pt;
+        .label { display: none; }
+      }
+    }
+
+    > *:first-child { margin-top: $standard-margin; }
+    > *:last-child { margin-bottom: $standard-margin; }
+  }
+}
+
+main {
+  .center-content {
+    padding-top: $standard-margin;
+    padding-bottom: $standard-margin;
+
+    article {
+      background-color: $normal-header;
+      margin-bottom: $standard-margin;
+      h1 {
+        background-size: cover;
+        background-image: linear-gradient(rgba(255, 255 ,255, .90), rgba(255, 255 ,255, .90)), url($background-image);
+        background-position: center center;
+        background-repeat: no-repeat;
+        transition: 0.3s;
+      }
+      h1:focus, h1:hover {
+        background-image: linear-gradient(rgba(255, 255 ,255, .80), rgba(255, 255 ,255, .80)), url($background-image);
+      }
+      blockquote {
+        background-color: #fff;
+      }
+    }
+    article:last-child { margin-bottom: 0; }
+    #disqus_thread { background-color: $normal-header; }
+  }
+}
+
+main.index .center-content, #recommended {
+  display: flex;
+  align-content: flex-start;
+  align-items: stretch;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 0;
+}
+main.index .center-content {
+  flex-wrap: wrap;
+  margin: ($standard-margin / 2) 0;
+  width: 100%;
+  article { margin: ($standard-margin / 2); min-width: 400px; }
+}
+#recommended {
+  margin-bottom: $standard-margin;
+  article {
+    flex: 1;
+    margin: 0;
+    .post-meta { border: 0; }
+  }
+}
+#recommended:last-child { margin-bottom: 0; }
+
+footer {
+  width: 100%;
+  .copyright { text-align: center; }
+}
+
+.panel-overlay {
+  background-color: rgba(34, 34, 34, 0.85);
+  height: 100%;
+  width: 100%;
+}
+
+.center-content {
+  > * {
+    margin: 0 auto;
+  }
+}
+
+// common part that will be fed to media query
+
+@mixin header-on-left($header-width, $content-width) {
+
+  header {
+    position: absolute;
+    height: 100%;
+    width: $header-width;
+    .center-content {
+      height: 100vh;
+      overflow: auto;
+      > * { width: ($header-width * 0.8); }
+    }
+    z-index: 1;
+  }
+
+  #leftpad {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    padding-left: calc(#{$header-width} + #{$standard-margin / 2});
+    position: absolute;
+    z-index: 0;
+     -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+             box-sizing: border-box;
+    .center-content > * { width: $content-width; }
+    main.index .center-content > * { width: ($content-width / 2); }
+  }
+
+  main > * {
+    position: relative;
+    top: 0;
+    z-index: 1;
+  }
+
+  footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 0;
+  }
+
+} // @mixin header-on-left
+
+@mixin header-on-top() {
+
+  table {
+    table-layout: fixed;
+    width: 100%;
+    th, td { overflow-x: auto; }
+  }
+
+  header {
+    > .panel-overlay > .center-content {
+
+      > *:first-child { margin-top: ($standard-margin / 2); }
+      > *:last-child { margin-bottom: ($standard-margin / 2); }
+    }
+  }
+
+  main {
+    .center-content {
+      padding-top: ($standard-margin / 2);
+      padding-bottom: ($standard-margin / 2);
+
+      article {
+        background-color: $normal-header;
+        margin-bottom: ($standard-margin / 2);
+      }
+    }
+  }
+  main.index .center-content article {
+    min-width: 0;
+  }
+
+  .katex-display {
+    overflow-x: auto;
+    margin: 0 auto;
+    padding: 0 ($standard-margin / 2);
+  }
+  #recommended {
+    flex-direction: column;
+  }
+} // @mixin header-on-top()
+
+// media queries
+
+// header on left
+@media (min-width: 1430px) {
+  @include header-on-left(500px, 800px);
+}
+@media (min-width: 1300px) and (max-width: 1429px) {
+  @include header-on-left(400px, 800px);
+}
+@media (min-width: 1200px) and (max-width: 1299px) {
+  @include header-on-left(400px, 700px);
+}
+@media (min-width: 1070px) and (max-width: 1199px) {
+  @include header-on-left(350px, 600px);
+}
+// header on top - page-wide everything
+@media (max-width: 1069px) {
+  @include header-on-top();
+}
+/* Pygments Twilight theme by Dan Simpson
+   https://gist.github.com/dansimpson/803005
+   updated to use pre>code instead of pre.code */
+@import "twilight_pygments";

@@ -1,0 +1,7 @@
+<main>
+<div class="center-content">
+{%- include_cached article.html page_lang=page.lang post_url=page.url post_title=page.title post_date=page.date post_categories=page.categories post_tags=page.tags post_content=content -%}
+{%- include_cached recommended.html page_lang=page.lang recommended=page.recommended -%}
+{%- include_cached disqus.html page_url=page.url page_id=page.id -%}
+</div>
+</main>

@@ -1,0 +1,24 @@
+---
+---
+
+header, .post-meta, #recommended, #disqus_thread { display: none; }
+
+main pre > code {
+  overflow: visible;
+  /* Warning: Needed for oldIE support, but words are broken up letter-by-letter */
+   -ms-word-break: break-all;
+       word-break: break-all;
+
+       /* Non standard for webkit */
+       word-break: break-word;
+
+  -webkit-hyphens: auto;
+     -moz-hyphens: auto;
+      -ms-hyphens: auto;
+          hyphens: auto;
+}
+
+/* Pygments Trac theme
+   https://github.com/richleland/pygments-css
+   updated to use pre>code instead of pre.code */
+@import "trac_pygments";

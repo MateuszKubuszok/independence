@@ -1,0 +1,7 @@
+google_analytics: false
+disqus_shortname: false
+
+sass:
+  style: nested
+
+plugins: ['jekyll-include-cache', 'jekyll-sitemap', 'jekyll-toc']
