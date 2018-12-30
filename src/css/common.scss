@@ -38,12 +38,16 @@ $content-margin: 30pt;
 body {
   color: $normal-main;
   font-family: $standard-font;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 header {
   color: $normal-header;
   font-size: 14pt;
   font-family: $special-font;
+  -webkit-font-smoothing: subpixel-antialiased;
   nav { font-size: 12pt; }
   a {
     color: $normal-header;
