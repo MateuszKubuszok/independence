@@ -101,13 +101,21 @@ main {
   }
 
   blockquote {
-    border: 1px $background solid;
-    border-width: 1px 0;
     font-style: italic;
     margin: 0;
     text-align: center;
     pre > code { text-align: left; }
   }
+  blockquote, .highlighter-rouge {
+    border-top: 1px $background solid;
+    border-bottom: 1px $background solid;
+    + {
+      blockquote, .highlighter-rouge {
+        border-top: 0;
+      }
+    }
+  }
+
 
   pre > code {
     display: block;
