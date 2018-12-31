@@ -163,6 +163,7 @@ main {
 main.index .center-content, #recommended {
   article > p { font-size: 12pt;}
 }
+#recommended h1 { font-size: 180% !important; }
 
 article {
   > h1:focus, > h1:hover { a { color: $emphase-header; } }
