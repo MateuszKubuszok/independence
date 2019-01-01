@@ -2,7 +2,7 @@
 
 .EXPORT_ALL_VARIABLES:
 
-JEKYLL_IMG=jekyll/builder:3.8.5
+JEKYLL_IMG=kubuszok/jekyll:3.8.5
 AWS_IMG=mesosphere/aws-cli:1.14.5
 EXTRA_ARGS?=-it --privileged --userns=host
 
@@ -39,6 +39,10 @@ publish:
 pull_docker:
 	@docker pull ${JEKYLL_IMG}
 	@docker pull ${AWS_IMG}
+
+push_docker:
+	@docker build . -t ${JEKYLL_IMG}
+	@docker push ${JEKYLL_IMG}
 
 clean:
 	@rm bundle src/{.jekyll_metadata,.sass-cache,_site} -rf

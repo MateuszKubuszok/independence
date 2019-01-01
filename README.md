@@ -7,6 +7,7 @@ Features:
 
  * code rendered server-side with Rouge ([Pygments Twilight theme by Dan Simpson](https://gist.github.com/dansimpson/803005), trac for printing),
  * TeX rendered server-side with KaTeX,
+ * graphs generated using Graphviz,
  * CSS is minified and compiled into 3 preloaded styles, divided by `media`,
  * self-hosted Google Fonts (Raleway, Roboto Sans) for normal text and FiraCode for code blocks,
  * JS only for Google Analytics, Disqus, and CSS preload (with JS disabled styles are loaded without preload),

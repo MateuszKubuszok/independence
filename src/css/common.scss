@@ -213,7 +213,7 @@ body {
   sub { font-size: small; vertical-align: sub; }
   sup { font-size: small; vertical-align: super; }
 
-  img { max-width: 100%; }
+  img, svg { display: block; max-width: 100%; margin: 0 auto; }
 }
 
 // media queries

@@ -56,10 +56,15 @@ kramdown:
   math_engine: katex
   math_engine_opts: {}
 
+diagrams:
+  graphviz:
+    engine: dot
+    options: '-Tsvg -Gbgcolor="transparent" -Gfontpath="/srv/jekyll/fonts" -Gfontname="FiraCode-Regular" -Efontname="FiraCode-Regular" -Nfontname="FiraCode-Regular"'
+
 jekyll-minifier:
   exclude: 'robots.txt'
 
 # If you add plugins make sure you check that section _config.dev.yml as well.
 # We use _config.dev.yml to remove jekyll-minifier from dev flow.
-plugins: ['jekyll-include-cache', 'jekyll-minifier', 'jekyll-sitemap', 'jekyll-toc']
+plugins: ['jekyll-graphviz', 'jekyll-include-cache', 'jekyll-minifier', 'jekyll-sitemap', 'jekyll-toc']
 exclude: ['_config.dev.yaml', '_data', 'Gemfile', 'Gemfile.lock']
