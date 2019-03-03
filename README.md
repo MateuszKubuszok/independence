@@ -14,6 +14,7 @@ Features:
  * configurable though `_config.yml`,
  * `hidded: true` front matter hides posts from links, but publishes it (compatible with pagination plugin),
  * `recommended: [/permalink1/, /permalink1/]` front matter creates reccomended posts under article,
+ * `image: /images/post3.jpg` front matter replaces default H1 background with a custom one,
  * date translated with [oncleben31/jekyll-date-basic-i18n](https://github.com/oncleben31/jekyll-date-basic-i18n),
  * can be build, served and published to AWS using Docker.
 

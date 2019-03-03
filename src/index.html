@@ -4,6 +4,6 @@ layout: index
 {%- for post in site.posts -%}
 {%- unless post.hidden -%}
 {%- assign post_content = post.excerpt | strip_html | prepend: '<p>' | append: '...</p>' -%}
-{%- include_cached article.html page_lang=page.lang post_url=post.url post_title=post.title post_date=post.date post_categories=post.categories post_tags=post.tags post_content=post_content -%}
+{%- include_cached article.html page_lang=page.lang post_url=post.url post_title=post.title post_date=post.date post_categories=post.categories post_tags=post.tags post_content=post_content post_image=post.image -%}
 {%- endunless -%}
 {%- endfor -%}

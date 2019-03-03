@@ -1,5 +1,5 @@
 <article>
-  <h1><a href="{{ site.baseurl }}{{ include.post_url | remove_first: '/' }}" title="{{ include.post_title }}">{{ include.post_title }}</a></h1>
+  <h1{%- if include.post_image -%} style="background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url({{ include.post_image }})"{%- endif -%}><a href="{{ site.baseurl }}{{ include.post_url | remove_first: '/' }}" title="{{ include.post_title }}">{{ include.post_title }}</a></h1>
   <div class="post-meta">
     <time datetime="{{ include.post_date | date: "%-d %b %Y" }}" class="date"><i class="far fa-calendar-alt"></i>&nbsp;{% include_cached translated_date.html date=include.post_date format="%-d %b %Y" lang=include.page_lang %}</time>
     {%- if include.post_categories.size > 0 -%}

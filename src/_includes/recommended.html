@@ -3,7 +3,7 @@
 {%- for url in include.recommended -%}
 {%- assign found_post_opt = site.posts | where: "url", url -%}
 {%- for post in found_post_opt -%}
-  {%- include_cached article.html page_lang=include.page_lang post_url=post.url post_title=post.title post_date=post.date post_categories=post.categories post_tags=post.tags post_content='' -%}
+  {%- include_cached article.html page_lang=include.page_lang post_url=post.url post_title=post.title post_date=post.date post_categories=post.categories post_tags=post.tags post_content='' post_image=post.image -%}
 {%- endfor -%}
 {%- endfor -%}
 </div>
