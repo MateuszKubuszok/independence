@@ -16,6 +16,7 @@ Features:
  * `recommended: [/permalink1/, /permalink1/]` front matter creates reccomended posts under article,
  * `image: /images/post3.jpg` front matter replaces default H1 background with a custom one,
  * date translated with [oncleben31/jekyll-date-basic-i18n](https://github.com/oncleben31/jekyll-date-basic-i18n),
+ * images which will places in `.img` class (put `{:.img}` one line before) - will be displayed without borders,
  * can be build, served and published to AWS using Docker.
 
 Many ideas here were inspired by [Uno theme](https://github.com/joshgerdes/jekyll-uno) -

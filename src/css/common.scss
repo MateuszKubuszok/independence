@@ -271,6 +271,8 @@ body {
     > h3 { margin-top: ($inner-margin * 1.00); }
     > h4 { margin-top: ($inner-margin * 0.75); }
 
+    > .img { margin-left: 0; margin-right: 0; }
+
     > .post-meta {
       margin: 0;
       padding: ($inner-margin * 0.75) $inner-margin;
