@@ -105,6 +105,8 @@ main {
     margin: 0;
     text-align: center;
     pre > code { text-align: left; }
+    > * { margin-top: 15pt; }
+    > *:first-child { margin-top: 0; }
   }
   blockquote, .highlighter-rouge {
     border-top: 1px $background solid;
