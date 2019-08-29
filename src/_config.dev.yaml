@@ -4,4 +4,4 @@ disqus_shortname: false
 sass:
   style: nested
 
-plugins: ['jekyll-graphviz', 'jekyll-include-cache', 'jekyll-sitemap', 'jekyll-toc']
+plugins: ['jekyll-diagrams', 'jekyll-include-cache', 'jekyll-sitemap', 'jekyll-toc']

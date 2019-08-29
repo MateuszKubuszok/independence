@@ -1,3 +1,3 @@
-FROM jekyll/builder:3.8.5
+FROM jekyll/builder:4.0.0
 
 RUN apk --no-cache add graphviz

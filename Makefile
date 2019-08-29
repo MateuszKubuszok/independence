@@ -2,7 +2,7 @@
 
 .EXPORT_ALL_VARIABLES:
 
-JEKYLL_IMG=kubuszok/jekyll:3.8.5
+JEKYLL_IMG=kubuszok/jekyll:4.0.0
 AWS_IMG=mesosphere/aws-cli:1.14.5
 EXTRA_ARGS?=-it --privileged --userns=host
 
@@ -18,6 +18,9 @@ build:
 		@exit 1; \
 	fi
 	@JEKYLL_ENV=production $(WITH_JEKYLL) jekyll build
+
+install:
+	@$(WITH_JEKYLL) bundle install
 
 update:
 	@$(WITH_JEKYLL) bundle update
