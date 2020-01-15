@@ -1,5 +1,17 @@
 <article>
-  <h1{%- if include.post_image -%} style="background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url({{ include.post_image }})"{%- endif -%}><a href="{{ site.baseurl }}{{ include.post_url | remove_first: '/' }}" title="{{ include.post_title }}">{{ include.post_title }}</a></h1>
+  {%- assign post_class = include.page_id | replace: '/', '-' | prepend: 'post' -%}
+  <h1{% if include.post_image %} class="{{ post_class }}"{% endif %}><a href="{{ site.baseurl }}{{ include.post_url | remove_first: '/' }}" title="{{ include.post_title }}">{{ include.post_title }}</a></h1>
+  {%- if include.post_image -%}
+  <style>
+    main .center-content article h1.{{ post_class }} {
+      background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('{{ include.post_image }}');
+    }
+    main .center-content article h1.{{ post_class }}:focus,
+    main .center-content article h1.{{ post_class }}:hover {
+      background-image: linear-gradient(rgba(255, 255 ,255, .80), rgba(255, 255 ,255, .80)), url('{{ include.post_image }}');
+    }
+  </style>
+  {%- endif -%}
   <div class="post-meta">
     <time datetime="{{ include.post_date | date: "%-d %b %Y" }}" class="date"><i class="far fa-calendar-alt"></i>&nbsp;{% include_cached translated_date.html date=include.post_date format="%-d %b %Y" lang=include.page_lang %}</time>
     {%- if include.post_categories.size > 0 -%}
