@@ -44,6 +44,7 @@ permalink: /:year/:title/
 markdown: kramdown
 highlighter: rouge
 timezone: Europe/Warsaw
+encoding: utf-8
 
 sass:
   style: compressed # we override it in _config.dev.yml to nested
@@ -56,10 +57,17 @@ kramdown:
   math_engine: katex
   math_engine_opts: {}
 
-diagrams:
+jekyll-diagrams:
   graphviz:
-    engine: dot
-    options: '-Tsvg -Gbgcolor="transparent" -Gfontpath="/srv/jekyll/fonts" -Gfontname="FiraCode-Regular" -Efontname="FiraCode-Regular" -Nfontname="FiraCode-Regular"'
+    graph_attributes:
+      bgcolor: "transparent"
+      fontpath: "/srv/jekyll/fonts"
+      fontname: "FiraCode-Regular"
+      forcelabels: "true"
+    node_attributes:
+      fontname: "FiraCode-Regular"
+    edge_attributes:
+      fontname: "FiraCode-Regular"
 
 jekyll-minifier:
   exclude: 'robots.txt'
