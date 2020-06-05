@@ -4,14 +4,16 @@ permalink: /series/
 ---
 <article>
   <h2>{{ site.data.locales[page.lang].series | capitalize }}:</h2>
+  {% assign categories_by_date = site.categories | sort_cat_by_newest %}
+
   <div class="series">
-  {% for catitem in site.categories %}
+  {% for catitem in categories_by_date %}
     <a href="#{{ catitem[0] }}"><i class="fas fa-signature"></i>&nbsp;{{ catitem[0] }}</a>
   {% endfor %}
   </div>
 
   <!-- iterate through all series on the site -->
-  {% for catitem in site.categories %}
+  {% for catitem in categories_by_date %}
     <!-- for each tag, create an anchor by using the tag name as an id -->
     <div id="{{ catitem[0] }}">
       <h3><i class="fas fa-signature"></i>{{ catitem[0] }}</h3>  <!-- for create a heading -->
@@ -23,7 +25,8 @@ permalink: /series/
           {% if post.categories contains catitem[0] %}
           {% unless post.hidden %}
               <li>
-                <a href="{{ post.url }}">{{ post.title }}</a>
+                <a href="{{ post.url }}">{{ post.title }}</a><small><br/><time datetime="{{ post.date | date: "%-d %b %Y" }}" class="date"><i class="far fa-calendar-alt"></i>&nbsp;{% include_cached translated_date.html date=post.date format="%-d %b %Y" lang=include.page_lang %}</time></small>
+              </li>
               </li>
           {% endunless %}
           {% endif %}

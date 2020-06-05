@@ -4,14 +4,16 @@ permalink: /tags/
 ---
 <article>
   <h2>{{ site.data.locales[page.lang].tags | capitalize }}:</h2>
+  {% assign sorted_tags = site.tags | sort %}
+
   <div class="tags">
-  {% for tagitem in site.tags  %}
+  {% for tagitem in sorted_tags  %}
     <a href="#{{ tagitem[0] }}"><i class="fas fa-tag"></i>&nbsp;{{ tagitem[0] }}</a>
   {% endfor %}
   </div>
 
   <!-- iterate through all tags on the site -->
-  {% for tagitem in site.tags %}
+  {% for tagitem in sorted_tags %}
     <!-- for each tag, create an anchor by using the tag name as an id -->
     <div id="{{ tagitem[0] }}">
       <h3><i class="fas fa-tag"></i>{{ tagitem[0] }}</h3>  <!-- for create a heading -->
