@@ -47,6 +47,7 @@ timezone: Europe/Warsaw
 encoding: utf-8
 
 sass:
+  sourcemap: development
   style: compressed # we override it in _config.dev.yml to nested
 
 kramdown:
