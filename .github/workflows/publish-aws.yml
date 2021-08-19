@@ -1,0 +1,48 @@
+name: Publish AWS
+on:
+  push:
+    branches:
+      - master
+jobs:
+  Build-and-Publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Cache Jekyll deps
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-jekyll-deps
+        with:
+          path: |
+            ${{ github.workspace }}/bundle
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: Prepare workspace
+        run: |
+          cd ${{ github.workspace }}
+
+      - name: Build
+        env:
+          EXTRA_ARGS: --privileged
+        run: |
+          sudo chown -R 1000 ${{ github.workspace }}
+          make build
+          sudo chown -R $USER ${{ github.workspace }}
+
+      - name: Publish
+        if: ${{ false }} # remove to enable
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION  }}
+          S3_BUCKET: ${{ secrets.S3_BUCKET }}
+          CF_DISTRIBUTION_ID: ${{ secrets.CF_DISTRIBUTION_ID }}
+          EXTRA_ARGS: --privileged
+        run: |
+           make publish
