@@ -1,9 +1,9 @@
 {%- if page.recommended -%}
 <div id="recommended">
+{%- assign skip_content = true -%}
 {%- for url in page.recommended -%}
 {%- assign found_post_opt = site.posts | where: "url", url -%}
 {%- for post in found_post_opt -%}
-  {%- assign skip_content = true -%}
   {%- include article.html -%}
 {%- endfor -%}
 {%- endfor -%}

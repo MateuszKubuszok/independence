@@ -14,18 +14,14 @@
   {%- endif -%}
   <div class="post-meta">
     <time datetime="{{ post.date | date: "%-d %b %Y" }}" class="date"><i class="far fa-calendar-alt"></i>&nbsp;{{ post.date | translated_date: page.lang, "%-d %b %Y" }}</time>
-    {%- if post.categories.size > 0 -%}
+    {%- if post.categories != blank -%}
     &#8226; <span class="series">{{ site.data.locales[page.lang].series }}: {% for category in post.categories %}<a href="{{ site.baseurl }}series/#{{ category }}"><i class="fas fa-signature"></i>&nbsp;{{ category }}</a> {%- endfor -%}</span>
     {% endif %}
-    {%- if post.tags.size > 0 -%}
+    {%- if post.tags.size != blank -%}
     &#8226; <span class="tags">{{ site.data.locales[page.lang].tags }}: {% for tag in post.tags %}<a href="{{ site.baseurl }}tags/#{{ tag }}"><i class="fas fa-tag"></i>&nbsp;{{ tag }}</a> {% endfor %}</span>
     {%- endif -%}
   </div>
   {%- unless skip_content -%}
-  {%- if excerpt_only -%}
-  {{ post.excerpt | strip_html | prepend: '<p>' | append: '...</p>' }}
-  {% else %}
-  {{ post.content }}
-  {%- endif -%}
+  {%- if excerpt_only -%}{{ post.excerpt }}{% else %}{{ content }}{%- endif -%}
   {%- endunless -%}
 </article>

@@ -1,9 +1,9 @@
 ---
 layout: index
 ---
+{%- assign excerpt_only = true -%}
 {%- for post in site.posts -%}
 {%- unless post.hidden -%}
-{%- assign excerpt_only = true -%}
 {%- include article.html -%}
 {%- endunless -%}
 {%- endfor -%}

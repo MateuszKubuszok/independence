@@ -111,7 +111,7 @@
     {%- endunless -%}
     {%- endif -%}
     <hr />
-    {%- include toc.html -%}
+    {{ page.content | toc_only }}
   </nav>
 </div>
 </div>

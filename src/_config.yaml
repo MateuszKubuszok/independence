@@ -80,3 +80,4 @@ jekyll-minifier:
 # We use _config.dev.yml to remove jekyll-minifier from dev flow.
 plugins: ['jekyll-diagrams', 'jekyll-minifier', 'jekyll-sitemap', 'jekyll-toc']
 exclude: ['_config.dev.yaml', '_data', 'Gemfile', 'Gemfile.lock']
+keep_files: ['fonts', 'images', 'sprites', 'svgs', 'webfonts']
