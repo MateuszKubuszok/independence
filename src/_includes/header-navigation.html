@@ -18,6 +18,16 @@
       </li>
       {%- endif -%}
 
+      {%- if site.author.mastodon_server and site.author.mastodon_username -%}
+      <!-- Mastodon -->
+      <li>
+        <a href="https://{{ site.author.mastodon_server }}/@{{ site.author.mastodon_username }}" title="@{{ site.author.mastodon_username }}@{{ site.author.mastodon_server }} on Mastodon">
+          <i class="fab fa-mastodon"></i>
+          <span class="label">Mastodon</span>
+        </a>
+      </li>
+      {%- endif -%}
+
       {%- if site.author.facebook_username -%}
       <!-- Facebook -->
       <li>
@@ -38,10 +48,10 @@
       </li>
       {%- endif -%}
 
-      {%- if site.author.stackoverflow_username -%}
+      {%- if site.author.stackoverflow_userid && site.author.stackoverflow_username -%}
       <!-- Stack Overflow -->
       <li>
-        <a href="https://stackoverflow.com/story/{{ site.author.linkedin_username }}" title="{{ site.author.stackoverflow_username }} on Stack Overflow">
+        <a href="https://stackoverflow.com/users/{{ site.author.stackoverflow_userid }}/{{ site.author.stackoverflow_username }}" title="{{ site.author.stackoverflow_username }} on Stack Overflow">
           <i class="fab fa-stack-overflow"></i>
           <span class="label">Stack Overflow</span>
         </a>
