@@ -16,8 +16,11 @@ author:
   # displayed in navigation - leave empty to skip
   email: '[fill or remove]'
   twitter_username: '[fill or remove]'
+  mastodon_server: '[fill or remove]'
+  mastodon_username: '[fill or remove]'
   facebook_username: '[fill or remove]'
   github_username:  '[fill or remove]'
+  stackoverflow_userid: '[fill or remove]'
   stackoverflow_username: '[fill or remove]'
   linkedin_username: '[fill or remove]'
   cv_url: '[fill or remove]'
