@@ -96,20 +96,22 @@
       </li>
       {%- endif -%}
     </ul>
-    {%- if include.page.next.url -%}
-    {%- unless include.page.next.hidden -%}
+    {% assign next_page = page.next %}
+    {%- if next_page.url -%}
+    {%- unless next_page.hidden -%}
     <hr />
-    <p><a href="{{ site.baseurl }}{{ include.page.next.url | remove_first: '/' }}" title="{{ include.page.next.title }}"><i class="fas fa-forward"></i> <em>{{ include.page.next.title }}</em></a></p>
+    <p><a href="{{ site.baseurl }}{{ next_page.url | remove_first: '/' }}" title="{{ next_page.title }}"><i class="fas fa-forward"></i> <em>{{ next_page.title }}</em></a></p>
     {%- endunless -%}
     {%- endif -%}
-    {%- if page.previous.url -%}
-    {%- unless page.previous.hidden -%}
+    {% assign previous_page = page.previous %}
+    {%- if previous_page.url -%}
+    {%- unless previous_page.hidden -%}
     <hr />
-    <p><a href="{{ site.baseurl }}{{ include.page.previous.url | remove_first: '/' }}" title="{{ include.page.previous.title }}"><i class="fas fa-backward"></i> <em>{{ include.page.previous.title }}</em></a><p>
+    <p><a href="{{ site.baseurl }}{{ previous_page.url | remove_first: '/' }}" title="{{ previous_page.title }}"><i class="fas fa-backward"></i> <em>{{ previous_page.title }}</em></a><p>
     {%- endunless -%}
     {%- endif -%}
     <hr />
-    {%- include_cached toc.html page_content=include.page_content -%}
+    {%- include toc.html -%}
   </nav>
 </div>
 </div>

@@ -2,11 +2,11 @@
 
 .EXPORT_ALL_VARIABLES:
 
-JEKYLL_IMG=kubuszok/jekyll:4.0.0
+JEKYLL_IMG=kubuszok/jekyll:4.2.2
 AWS_IMG=mesosphere/aws-cli:1.14.5
 EXTRA_ARGS?=-it --privileged --userns=host
 
-WITH_JEKYLL=docker run --rm --volume="${PWD}/src:/srv/jekyll" --volume="${PWD}/bundle:/usr/local/bundle" -e JEKYLL_ENV="${JEKYLL_ENV}" -p 4000:4000 $(EXTRA_ARGS) "${JEKYLL_IMG}"
+WITH_JEKYLL=docker run --platform linux/amd64 --rm --volume="${PWD}/src:/srv/jekyll:Z" --volume="${PWD}/bundle:/usr/gem:Z" -e JEKYLL_ENV="${JEKYLL_ENV}" -p 4000:4000 $(EXTRA_ARGS) "${JEKYLL_IMG}"
 WITH_AWSCLI=docker run --rm --volume="${PWD}/src/_site:/project" -e AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}" -e AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}" -e AWS_DEFAULT_REGION="${AWS_DEFAULT_REGION}" "${AWS_IMG}"
 
 serve:
@@ -48,4 +48,4 @@ push_docker:
 	@docker push "${JEKYLL_IMG}"
 
 clean:
-	@rm bundle src/{.jekyll_metadata,.sass-cache,_site} -rf
+	@rm -rf bundle src/{.jekyll-cache,.jekyll-metadata,_site}

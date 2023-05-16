@@ -25,7 +25,7 @@ permalink: /series/
           {% if post.categories contains catitem[0] %}
           {% unless post.hidden %}
               <li>
-                <a href="{{ post.url }}">{{ post.title }}</a><small><br/><time datetime="{{ post.date | date: "%-d %b %Y" }}" class="date"><i class="far fa-calendar-alt"></i>&nbsp;{% include_cached translated_date.html date=post.date format="%-d %b %Y" lang=include.page_lang %}</time></small>
+                <a href="{{ post.url }}">{{ post.title }}</a><small><br/><time datetime="{{ post.date | date: "%-d %b %Y" }}" class="date"><i class="far fa-calendar-alt"></i>&nbsp;{{ post.date | translated_date: page.lang, "%-d %b %Y" }}</time></small>
               </li>
               </li>
           {% endunless %}

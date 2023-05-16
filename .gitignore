@@ -1,5 +1,4 @@
 bundle/
 src/_site
-src/.sass-cache
 src/.jekyll-cache
 src/.jekyll-metadata

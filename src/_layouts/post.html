@@ -2,12 +2,12 @@
 ---
 <!DOCTYPE html>
 <html lang="{{ page.lang }}">
-{%- include_cached head.html page=page -%}
+{%- include head.html -%}
 <body>
-{%- include header-navigation.html page=page page_content=content -%}
+{%- include header-navigation.html -%}
 <div id="leftpad">
 {%- include main-post.html -%}
-{%- include_cached footer.html -%}
+{%- include footer.html -%}
 </div>
 </body>
 </html>

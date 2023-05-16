@@ -1,25 +1,31 @@
 <article>
-  {%- assign post_class = include.page_id | replace: '/', '-' | prepend: 'post' -%}
-  <h1{% if include.post_image %} class="{{ post_class }}"{% endif %}><a href="{{ site.baseurl }}{{ include.post_url | remove_first: '/' }}" title="{{ include.post_title }}">{{ include.post_title }}</a></h1>
-  {%- if include.post_image -%}
+  {%- assign post_class = post.id | replace: '/', '-' | prepend: 'post' -%}
+  <h1{% if post.image %} class="{{ post_class }}"{% endif %}><a href="{{ site.baseurl }}{{ post.url | remove_first: '/' }}" title="{{ post.title }}">{{ post.title }}</a></h1>
+  {%- if post.image -%}
   <style>
     main .center-content article h1.{{ post_class }} {
-      background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('{{ include.post_image }}');
+      background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('{{ post.image }}');
     }
     main .center-content article h1.{{ post_class }}:focus,
     main .center-content article h1.{{ post_class }}:hover {
-      background-image: linear-gradient(rgba(255, 255 ,255, .80), rgba(255, 255 ,255, .80)), url('{{ include.post_image }}');
+      background-image: linear-gradient(rgba(255, 255 ,255, .80), rgba(255, 255 ,255, .80)), url('{{ post.image }}');
     }
   </style>
   {%- endif -%}
   <div class="post-meta">
-    <time datetime="{{ include.post_date | date: "%-d %b %Y" }}" class="date"><i class="far fa-calendar-alt"></i>&nbsp;{% include_cached translated_date.html date=include.post_date format="%-d %b %Y" lang=include.page_lang %}</time>
-    {%- if include.post_categories.size > 0 -%}
-    &#8226; <span class="series">{{ site.data.locales[include.page_lang].series }}: {% for category in include.post_categories %}<a href="{{ site.baseurl }}series/#{{ category }}"><i class="fas fa-signature"></i>&nbsp;{{ category }}</a> {%- endfor -%}</span>
+    <time datetime="{{ post.date | date: "%-d %b %Y" }}" class="date"><i class="far fa-calendar-alt"></i>&nbsp;{{ post.date | translated_date: page.lang, "%-d %b %Y" }}</time>
+    {%- if post.categories.size > 0 -%}
+    &#8226; <span class="series">{{ site.data.locales[page.lang].series }}: {% for category in post.categories %}<a href="{{ site.baseurl }}series/#{{ category }}"><i class="fas fa-signature"></i>&nbsp;{{ category }}</a> {%- endfor -%}</span>
     {% endif %}
-    {%- if include.post_tags.size > 0 -%}
-    &#8226; <span class="tags">{{ site.data.locales[include.page_lang].tags }}: {% for tag in include.post_tags %}<a href="{{ site.baseurl }}tags/#{{ tag }}"><i class="fas fa-tag"></i>&nbsp;{{ tag }}</a> {% endfor %}</span>
+    {%- if post.tags.size > 0 -%}
+    &#8226; <span class="tags">{{ site.data.locales[page.lang].tags }}: {% for tag in post.tags %}<a href="{{ site.baseurl }}tags/#{{ tag }}"><i class="fas fa-tag"></i>&nbsp;{{ tag }}</a> {% endfor %}</span>
     {%- endif -%}
   </div>
-  {{ include.post_content }}
+  {%- unless skip_content -%}
+  {%- if excerpt_only -%}
+  {{ post.excerpt | strip_html | prepend: '<p>' | append: '...</p>' }}
+  {% else %}
+  {{ post.content }}
+  {%- endif -%}
+  {%- endunless -%}
 </article>

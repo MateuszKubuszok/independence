@@ -78,5 +78,5 @@ jekyll-minifier:
 
 # If you add plugins make sure you check that section _config.dev.yml as well.
 # We use _config.dev.yml to remove jekyll-minifier from dev flow.
-plugins: ['jekyll-diagrams', 'jekyll-include-cache', 'jekyll-minifier', 'jekyll-sitemap', 'jekyll-toc']
+plugins: ['jekyll-diagrams', 'jekyll-minifier', 'jekyll-sitemap', 'jekyll-toc']
 exclude: ['_config.dev.yaml', '_data', 'Gemfile', 'Gemfile.lock']
