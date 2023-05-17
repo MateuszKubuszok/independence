@@ -76,6 +76,11 @@ jekyll-diagrams:
 jekyll-minifier:
   exclude: 'robots.txt'
 
+liquid:
+  error_mode: warn
+  #strict_variables: true
+  strict_filters: true
+
 # If you add plugins make sure you check that section _config.dev.yml as well.
 # We use _config.dev.yml to remove jekyll-minifier from dev flow.
 plugins: ['jekyll-diagrams', 'jekyll-minifier', 'jekyll-sitemap', 'jekyll-toc']
