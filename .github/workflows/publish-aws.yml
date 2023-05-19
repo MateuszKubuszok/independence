@@ -4,6 +4,26 @@ on:
     branches:
       - master
 jobs:
+  Rebuild-Docker-Image:
+    if: github.event.head_commit.message == 'Update Docker image'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Rebuild Docker image
+        run: |
+          make rebuild_docker
+
   Build-and-Publish:
     runs-on: ubuntu-latest
     steps:
@@ -29,7 +49,6 @@ jobs:
 
       - name: Build
         env:
-          IMG_TPE: ci
           EXTRA_ARGS: --privileged
         run: |
           sudo chown -R 1000 ${{ github.workspace }}
