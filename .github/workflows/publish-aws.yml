@@ -29,9 +29,11 @@ jobs:
 
       - name: Build
         env:
+          IMG_TPE: ci
           EXTRA_ARGS: --privileged
         run: |
           sudo chown -R 1000 ${{ github.workspace }}
+          make install
           make build
           sudo chown -R $USER ${{ github.workspace }}
 

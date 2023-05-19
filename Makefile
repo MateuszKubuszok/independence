@@ -2,11 +2,13 @@
 
 .EXPORT_ALL_VARIABLES:
 
+IMG_TPE?=local
+
 JEKYLL_IMG=kubuszok/jekyll:4.2.2
 AWS_IMG=mesosphere/aws-cli:1.14.5
 EXTRA_ARGS?=-it --privileged --userns=host
 
-WITH_JEKYLL=docker run --platform linux/amd64 --rm --volume="${PWD}/src:/srv/jekyll:Z" --volume="${PWD}/bundle:/usr/gem:Z" -e JEKYLL_ENV="${JEKYLL_ENV}" -p 4000:4000 $(EXTRA_ARGS) "${JEKYLL_IMG}"
+WITH_JEKYLL=docker run --rm --volume="${PWD}/src:/srv/jekyll:Z" --volume="${PWD}/bundle:/usr/gem:Z" -e JEKYLL_ENV="${JEKYLL_ENV}" -p 4000:4000 $(EXTRA_ARGS) "${JEKYLL_IMG}-${IMG_TPE}"
 WITH_AWSCLI=docker run --rm --volume="${PWD}/src/_site:/project" -e AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}" -e AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}" -e AWS_DEFAULT_REGION="${AWS_DEFAULT_REGION}" "${AWS_IMG}"
 
 serve:
@@ -40,12 +42,16 @@ publish:
 		|| $(WITH_AWSCLI) cloudfront create-invalidation --distribution-id "${CF_DISTRIBUTION_ID}" --paths '/*'
 
 pull_docker:
-	@docker pull "${JEKYLL_IMG}"
+	@docker pull "${JEKYLL_IMG}-${IMG_TPE}"
 	@docker pull "${AWS_IMG}"
 
 push_docker:
-	@docker build . -t "${JEKYLL_IMG}"
-	@docker push "${JEKYLL_IMG}"
+	@docker buildx create --use
+	@docker buildx build --platform linux/amd64,linux/arm64/v8 --tag "${JEKYLL_IMG}-local" --push .
+	@docker buildx stop
+
+push_docker_ci:
+	@docker build --platform linux/amd64 --tag "${JEKYLL_IMG}-ci" --push .
 
 clean:
 	@rm -rf bundle src/{.jekyll-cache,.jekyll-metadata,_site}

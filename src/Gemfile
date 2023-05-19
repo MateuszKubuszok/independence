@@ -3,6 +3,7 @@ gem 'jekyll'
 gem 'liquid-c'
 gem 'jekyll-diagrams', group: :jekyll_plugins
 gem 'jekyll-minifier', group: :jekyll_plugins
+gem 'jekyll-sass-converter', '2.2.0'
 gem 'jekyll-sitemap', group: :jekyll_plugins
 gem 'jekyll-toc', group: :jekyll_plugins
 gem 'execjs', group: :jekyll_plugins
