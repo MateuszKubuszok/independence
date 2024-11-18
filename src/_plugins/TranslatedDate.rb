@@ -6,7 +6,7 @@ module Jekyll
     @@lang = nil
     @@default_format = nil
 
-    def translated_date(parsed_date, lang, format)
+    def translated_date(parsed_date, lang, fmt)
       unless @@lang
         @@lang ||= @context.registers[:site].config['lang']
         @@lang ||= 'en'
@@ -17,7 +17,8 @@ module Jekyll
         @@default_format ||= @context.registers[:site].config['date_format']
         @@default_format ||= '%b %-d, %Y'
       end
-      format ||= @@default_format
+      translated_date_format = fmt.dup
+      translated_date_format ||= @@default_format.dup
 
       @locales ||= @context.registers[:site].data['locales']
       locale = @locales[lang]
@@ -25,7 +26,6 @@ module Jekyll
       num_day = parsed_date.strftime('%w').to_i
       num_month = parsed_date.strftime('%-m').to_i - 1
 
-      translated_date_format = format
       if locale['abbreviated_weekday'] && locale['abbreviated_weekday'][num_day]
         translated_date_format.gsub! '%a', locale['abbreviated_weekday'][num_day]
       end
