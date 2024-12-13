@@ -1,6 +1,8 @@
 google_analytics: false
 disqus_shortname: false
 
+host: 0.0.0.0
+
 sass:
   style: nested
 

@@ -18,10 +18,20 @@
       </li>
       {%- endif -%}
 
+      {%- if site.author.bsky_username -%}
+      <!-- BlueSky -->
+      <li>
+        <a href="https://bsky.app/profile/{{ site.author.bsky_username }}" title="@{{ site.author.bsky_username }} on BlueSky">
+          <i class="fab fa-bluesky"></i>
+          <span class="label">BlueSky</span>
+        </a>
+      </li>
+      {%- endif -%}
+
       {%- if site.author.mastodon_server and site.author.mastodon_username -%}
       <!-- Mastodon -->
       <li>
-        <a href="https://{{ site.author.mastodon_server }}/@{{ site.author.mastodon_username }}" title="@{{ site.author.mastodon_username }}@{{ site.author.mastodon_server }} on Mastodon">
+        <a href="https://{{ site.author.mastodon_server }}/@{{ site.author.mastodon_username }}" title="@{{ site.author.mastodon_username }}@{{ site.author.mastodon_server }} on Mastodon" ref="me">
           <i class="fab fa-mastodon"></i>
           <span class="label">Mastodon</span>
         </a>
@@ -111,7 +121,7 @@
     {%- endunless -%}
     {%- endif -%}
     <hr />
-    {{ page.content | toc_only }}
+    {{ content | toc_only }}
   </nav>
 </div>
 </div>

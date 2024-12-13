@@ -16,6 +16,8 @@ author:
   # displayed in navigation - leave empty to skip
   email: '[fill or remove]'
   twitter_username: '[fill or remove]'
+  bsky_server: '[fill or remove]'
+  bsky_username: '[fill or remove]'
   mastodon_server: '[fill or remove]'
   mastodon_username: '[fill or remove]'
   facebook_username: '[fill or remove]'
